@@ -1,17 +1,18 @@
 import smtplib
 import os
 
-from mail.mime.multipart import MIMEMultipart
-from mail.mime.text import MIMEText
+
+from email.mime.multipart import MIMEMultipart
+from email.mime.text import MIMEText
 
 
-def snd_mail(wrk_flow_name , repo_name , wrk_flow_run_id , workflow_run_url): 
+def snd_mail(work_flow_name , repo_name , work_flow_run_id , workflow_run_url): 
     sender_mail = os.getenv('SENDER_EMAIL')
     sender_password = os.getenv('SENDER_PASSWORD')
     receiver_mail = os.getenv('RECEIVER_EMAIL')
 
-    subject = f"Workflow {wrk_flow_name} failed in {repo_name}"
-    body = f"Workflow {wrk_flow_name} failed in {repo_name}. Please check the logs for more details.\n More details : \nrun_id: {wrk_flow_run_id} \nrepo_name: {repo_name} \nworkflow_name: {wrk_flow_name} \nworkflow_run_url: {workflow_run_url} "
+    subject = f"Workflow {work_flow_name} failed in {repo_name}"
+    body = f"Workflow {work_flow_name} failed in {repo_name}. Please check the logs for more details.\n More details : \nrun_id: {wrk_flow_run_id} \nrepo_name: {repo_name} \nworkflow_name: {wrk_flow_name} \nworkflow_run_url: {workflow_run_url} "
     
 
 
