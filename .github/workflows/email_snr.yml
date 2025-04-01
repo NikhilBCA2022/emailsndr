@@ -1,0 +1,37 @@
+name : "snd email after wrkflow"
+
+on :
+    workflow_dispatch:
+     
+
+jobs:
+    send_email:
+        runs-on: ubuntu-latest
+        steps:
+            - name : "checkout code"
+              uses : actions/checkout@v2
+
+            - name : "setup python"
+              uses : actions/setup-python@v2
+              with:
+                python-version: '3.8'
+            
+            - name : "install dependencies"
+              run : |
+                    python -m pip install --upgrade pip
+                    pip install smtplib
+                    pip install email
+                
+            - name : "send email"
+              run : python send_email.py
+              env:
+                workflow_name: ${{ github.workflow }}
+                repo_name: ${{ github.repository }}
+                run_id: ${{ github.run_id }}
+                reciver_email: ${{ secrets.RECIVER_EMAIL }}
+                sender_password: ${{ secrets.SENDER_PASSWORD }}
+                sender_email: ${{ secrets.SENDER_EMAIL }}
+
+
+
+
