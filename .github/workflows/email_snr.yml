@@ -2,6 +2,7 @@ name : "snd email after wrkflow"
 
 on :
     workflow_dispatch:
+
      
 
 jobs:
@@ -14,7 +15,7 @@ jobs:
             - name : "setup python"
               uses : actions/setup-python@v2
               with:
-                python-version: '3.8'
+                python-version: '3.x'
             
             - name : "install dependencies"
               run : |
